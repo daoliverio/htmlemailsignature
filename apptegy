@@ -1,0 +1,934 @@
+<!-- Paste this entire block into one Custom HTML/embed block. -->
+<div id="hcs-email-generator-embed">
+  <style>
+    #hcs-email-generator {
+      --brand:#003366;
+      --text:#0A0A0A;
+      --muted:#333333;
+      --bg:#FFFFFF;
+      --card:#FFFFFF;
+      --line:#C9D6E2;
+      --focus:#FF9900;
+      color: var(--text);
+      background: var(--bg);
+      font-size:16px;
+    }
+
+    #hcs-email-generator * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+    }
+
+    #hcs-email-generator header {
+      padding: 16px 20px;
+      background: var(--card);
+      border-bottom: 2px solid var(--line);
+    }
+
+    #hcs-email-generator header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    #hcs-email-generator main {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      align-items:start;
+    }
+
+    #hcs-email-generator .card {
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    #hcs-email-generator .card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    #hcs-email-generator fieldset {
+      border:0;
+      padding:0;
+      margin:0 0 12px;
+    }
+
+    #hcs-email-generator legend {
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    #hcs-email-generator .grid-2 {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+
+    #hcs-email-generator label {
+      display:block;
+      font-size:14px;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+
+    #hcs-email-generator input,
+    #hcs-email-generator select,
+    #hcs-email-generator textarea,
+    #hcs-email-generator button {
+      font-size: 16px;
+    }
+
+    #hcs-email-generator input,
+    #hcs-email-generator select,
+    #hcs-email-generator textarea {
+      width:100%;
+      padding:10px 12px;
+      border:2px solid var(--line);
+      border-radius:10px;
+      background:#fff;
+      color:var(--text);
+    }
+
+    #hcs-email-generator input:focus,
+    #hcs-email-generator select:focus,
+    #hcs-email-generator textarea:focus,
+    #hcs-email-generator button:focus {
+      outline:3px solid var(--focus);
+      outline-offset:2px;
+    }
+
+    #hcs-email-generator .help {
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    #hcs-email-generator .row {
+      margin-bottom:12px;
+    }
+
+    #hcs-email-generator .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    #hcs-email-generator button {
+      appearance:none;
+      border:2px solid var(--brand);
+      background:var(--brand);
+      color:#fff;
+      padding:.6rem 1rem;
+      border-radius:9999px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    #hcs-email-generator button.secondary {
+      background:#fff;
+      color:var(--brand);
+    }
+
+    #hcs-email-generator .preview {
+      padding:18px;
+      border:2px dashed var(--line);
+      border-radius:12px;
+      background:#fff;
+      min-height: 220px;
+    }
+
+    #hcs-email-generator .signature {
+      line-height:1.3;
+      font-family: Arial, Helvetica, sans-serif;
+      color:#111;
+      font-size:14px;
+    }
+
+    #hcs-email-generator .signature a {
+      color: var(--brand);
+      text-decoration:none;
+    }
+
+    #hcs-email-generator .signature .name {
+      font-weight:700;
+      font-size:16px;
+      color:#111;
+    }
+
+    #hcs-email-generator .signature .title,
+    #hcs-email-generator .signature .dept {
+      color:#222;
+      font-size:14px;
+    }
+
+    #hcs-email-generator .signature .meta {
+      color:#1a1a1a;
+      font-size:14px;
+    }
+
+    #hcs-email-generator .locked-note {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    #hcs-email-generator #toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--brand);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      box-shadow: 0 4px 14px rgba(0,0,0,.15);
+    }
+
+    #hcs-email-generator #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #hcs-email-generator * {
+        animation:none !important;
+        transition:none !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      #hcs-email-generator main {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #hcs-email-generator .btns {
+        flex-direction: column;
+      }
+    }
+
+    @media (forced-colors: active) {
+      #hcs-email-generator .preview,
+      #hcs-email-generator .card,
+      #hcs-email-generator input,
+      #hcs-email-generator select,
+      #hcs-email-generator textarea,
+      #hcs-email-generator button {
+        border: 1px solid CanvasText;
+      }
+
+      #hcs-email-generator button {
+        forced-color-adjust:none;
+        background: ButtonText;
+        color: ButtonFace;
+      }
+    }
+  </style>
+  <div id="hcs-email-generator" aria-label="Harrison County Schools Email Signature Generator">
+    <header>
+      <h1>Harrison County Schools — Email Signature Generator</h1>
+    </header>
+
+    <div id="toast" aria-live="polite" aria-atomic="true"></div>
+
+    <main>
+      <section class="card" aria-labelledby="form-title">
+        <h2 id="form-title">Build your signature</h2>
+        <p id="form-help" class="help">
+          Choose a school to auto-fill school name, office phone, fax (when available), address, and website.
+          Standard keeps the logo. Compact removes the logo.
+        </p>
+
+        <form id="sig-form" novalidate>
+          <fieldset>
+            <legend>Approved templates</legend>
+
+            <div class="row grid-2">
+              <div>
+                <label for="templateSelect">Template</label>
+                <select id="templateSelect" name="templateSelect">
+                  <option value="standard">Standard</option>
+                  <option value="compact">Compact</option>
+                </select>
+              </div>
+              <div>
+                <label for="logoSelect">Choose school/department</label>
+                <select id="logoSelect" name="logoSelect"></select>
+              </div>
+            </div>
+
+            <div class="row grid-2">
+              <div>
+                <label for="logoWidth">Logo width (px)</label>
+                <input id="logoWidth" name="logoWidth" type="number" value="120" min="60" max="220">
+              </div>
+              <div>
+                <div class="help" style="margin-top:1.9rem">
+                  Standard uses the school logo. Compact is text-only.
+                </div>
+              </div>
+            </div>
+
+            <div class="locked-note">
+              Changing schools auto-fills school name, address, office phone, fax (when available), and website.
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Identity</legend>
+
+            <div class="row grid-2">
+              <div>
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text">
+              </div>
+            </div>
+
+            <div class="row grid-2">
+              <div>
+                <label for="dept">School / Location</label>
+                <input id="dept" name="dept" type="text">
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="row grid-2">
+              <div>
+                <label for="phoneOffice">Office Phone</label>
+                <input id="phoneOffice" name="phoneOffice" type="tel" inputmode="tel" placeholder="304-555-0123">
+              </div>
+              <div>
+                <label for="phoneCell">Cell Phone</label>
+                <input id="phoneCell" name="phoneCell" type="tel" inputmode="tel" placeholder="304-555-0456">
+              </div>
+            </div>
+
+            <div class="row grid-2">
+              <div>
+                <label for="phoneFax">Fax</label>
+                <input id="phoneFax" name="phoneFax" type="tel" inputmode="tel" placeholder="304-555-0789">
+              </div>
+              <div>
+                <label for="web">Website</label>
+                <input id="web" name="web" type="url" inputmode="url" placeholder="https://www.harcoboe.net">
+              </div>
+            </div>
+
+            <div class="row grid-2">
+              <div>
+                <label for="address">Address</label>
+                <input id="address" name="address" type="text" placeholder="445 W Main St, Clarksburg, WV 26301">
+              </div>
+              <div>
+                <label for="room">Building / Room</label>
+                <input id="room" name="room" type="text" placeholder="Admin, Room 100">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Social media (optional)</legend>
+
+            <div class="row grid-2">
+              <div>
+                <label for="socialX">X</label>
+                <input id="socialX" name="socialX" type="url" placeholder="https://x.com/HarrisonSchools">
+              </div>
+              <div>
+                <label for="socialFB">Facebook</label>
+                <input id="socialFB" name="socialFB" type="url" placeholder="https://facebook.com/HarrisonSchools">
+              </div>
+            </div>
+
+            <div class="row grid-2">
+              <div>
+                <label for="socialIG">Instagram</label>
+                <input id="socialIG" name="socialIG" type="url" placeholder="https://instagram.com/HarrisonSchools">
+              </div>
+              <div>
+                <label for="socialYT">YouTube</label>
+                <input id="socialYT" name="socialYT" type="url" placeholder="https://youtube.com/@HarrisonSchools">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Disclaimer (optional)</legend>
+            <div class="row">
+              <label for="disclaimer">Disclaimer text</label>
+              <textarea id="disclaimer" name="disclaimer" rows="3"></textarea>
+            </div>
+          </fieldset>
+
+          <div class="btns">
+            <button type="button" id="copyOutlookBtn">Copy for Outlook</button>
+            <button type="button" id="downloadHtmlBtn" class="secondary">Download .html</button>
+            <button type="button" id="resetSchoolBtn" class="secondary">Reapply school auto-fill</button>
+            <button type="button" id="clearBtn" class="secondary">Clear saved information</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="preview-title">
+        <h2 id="preview-title">Live preview</h2>
+        <div id="preview" class="preview" role="region" aria-live="polite" aria-label="Signature preview"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const root = document.getElementById('hcs-email-generator');
+
+      const SCHOOLS = [
+        {
+          key:'district',
+          label:'Harrison County Schools',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7276/logo/8498/district.png',
+          address:'445 W Main Street, Clarksburg, WV 26301',
+          phoneOffice:'304-326-7300',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/'
+        },
+        {
+          key:'rcb',
+          label:'Robert C Byrd High School',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7827/logo/9043/rcb_athletics.png',
+          address:'1 Eagle Way, Clarksburg, WV 26301',
+          phoneOffice:'304-326-7200',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/o/rcbhs/'
+        },
+        {
+          key:'bigelm',
+          label:'Big Elm Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7807/logo/9056/BigElm-Bobcat.png',
+          address:'200 Tetrick Road, Shinnston, WV 26431',
+          phoneOffice:'304-326-7280',
+          phoneFax:'304-592-3255',
+          web:'https://www.harcoboe.net/o/bees/page/bees-overview'
+        },
+        {
+          key:'johnson',
+          label:'Johnson Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7808/logo/9055/Johnson_Elemtary_Logo.png',
+          address:'601 Johnson Avenue, Bridgeport, WV 26330',
+          phoneOffice:'304-326-7109',
+          phoneFax:'304-842-6562',
+          web:'https://www.harcoboe.net/o/jes/'
+        },
+        {
+          key:'lostcreek',
+          label:'Lost Creek Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7809/logo/9054/LostCreek-longhorn.png',
+          address:'2919 Hawk Highway, Lost Creek, WV 26385',
+          phoneOffice:'304-326-7040',
+          phoneFax:'304-745-4393',
+          web:'https://www.harcoboe.net/o/lces/'
+        },
+        {
+          key:'lumberport',
+          label:'Lumberport Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7810/logo/9053/Lumberport-Eagles.png',
+          address:'38 East Lyndon Street, Lumberport, WV 26386',
+          phoneOffice:'304-326-7020',
+          phoneFax:'304-584-5943',
+          web:'https://www.harcoboe.net/o/les/'
+        },
+        {
+          key:'mountaineer',
+          label:'Mountaineer Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/30421/logo/33235/Mount_logo_template_300.png',
+          address:'2 Mountaineer Drive, Clarksburg, WV 26301',
+          phoneOffice:'304-326-7650',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/o/mes/'
+        },
+        {
+          key:'nutterfort',
+          label:'Nutter Fort Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7813/logo/9059/Nutter-Fort_logo.png',
+          address:'1302 Buckhannon Pike, Nutter Fort, WV 26301',
+          phoneOffice:'304-326-7520',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/o/nfps/'
+        },
+        {
+          key:'salem',
+          label:'Salem Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7815/logo/9046/Salem_-_Cubs.png',
+          address:'273 Education Way, Salem, WV 26426',
+          phoneOffice:'304-326-7180',
+          phoneFax:'304-782-1293',
+          web:'https://www.harcoboe.net/o/ses/'
+        },
+        {
+          key:'simpson',
+          label:'Simpson Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7816/file/5001383/26ad62d8-cc44-4249-8b63-52577cc243e0.png',
+          address:'250 Worthington Drive, Bridgeport, WV 26330',
+          phoneOffice:'304-326-7060',
+          phoneFax:'304-842-2568',
+          web:'https://www.harcoboe.net/o/simpson-es/'
+        },
+        {
+          key:'victory',
+          label:'Victory Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/12577/logo/13981/V_Logo_Final.png',
+          address:'1349 Shinnston Pike, Clarksburg, WV 26301',
+          phoneOffice:'304-326-7070',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/o/ves/'
+        },
+        {
+          key:'westmilford',
+          label:'West Milford Elementary',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7817/logo/9048/Westmilfod_-_Hawks.png',
+          address:'182 School Street, West Milford, WV 26451',
+          phoneOffice:'304-326-7030',
+          phoneFax:'304-624-3279',
+          web:'https://www.harcoboe.net/o/wmes/'
+        },
+        {
+          key:'bridgeportmiddle',
+          label:'Bridgeport Middle',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7819/logo/9064/Bridgeport-Middle_logo.png',
+          address:'413 Johnson Avenue, Bridgeport, WV 26330',
+          phoneOffice:'304-326-7142',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/o/bms/'
+        },
+        {
+          key:'libertymiddle',
+          label:'Liberty Middle',
+          url:'https://cmsv2-assets.apptegy.net/uploads/30422/logo/33236/Liberty_logo_template_300.png',
+          address:'1 Mountaineer Drive, Clarksburg, WV 26301',
+          phoneOffice:'304-326-7620',
+          phoneFax:'',
+          web:'https://www.harcoboe.net/o/lbms/'
+        },
+        {
+          key:'lincolnmiddle',
+          label:'Lincoln Middle',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7820/logo/9063/Lincoln-Middle-Logo.png',
+          address:'78 Jerry Toth Drive, Shinnston, WV 26431',
+          phoneOffice:'304-326-7540',
+          phoneFax:'304-592-5846',
+          web:'https://www.harcoboe.net/o/lms/'
+        },
+        {
+          key:'southharrisonmiddle',
+          label:'South Harrison Middle',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7822/logo/9061/South_Harrison_Middle_-_Hawks.png',
+          address:'3003 Hawk Hwy, Lost Creek, WV 26385',
+          phoneOffice:'304-326-7460',
+          phoneFax:'304-745-5587',
+          web:'https://www.harcoboe.net/o/shms/'
+        },
+        {
+          key:'bridgeporthigh',
+          label:'Bridgeport High',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7824/logo/9027/Bridgeport_HS_-_Indians_HQ.png',
+          address:'515 Johnson Ave, Bridgeport, WV 26330',
+          phoneOffice:'304-326-7137',
+          phoneFax:'304-842-6288',
+          web:'https://www.harcoboe.net/o/bhs/'
+        },
+        {
+          key:'lincolnhigh',
+          label:'Lincoln High',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7826/file/378708/3a1c94ba-87da-48a0-b723-fb256b176829.png',
+          address:'100 Jerry Toth Drive, Shinnston, WV 26431',
+          phoneOffice:'304-326-7400',
+          phoneFax:'304-592-3415',
+          web:'https://www.harcoboe.net/o/lincoln-hs/'
+        },
+        {
+          key:'southharrisonhigh',
+          label:'South Harrison High',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7828/logo/9042/south_harrison_logo.png',
+          address:'3073 Hawk Hwy, Lost Creek, WV 26385',
+          phoneOffice:'304-326-7440',
+          phoneFax:'304-745-4292',
+          web:'https://www.harcoboe.net/o/shhs/'
+        },
+        {
+          key:'unitedprograms',
+          label:'United Programs',
+          url:'https://cmsv2-assets.apptegy.net/uploads/7829/logo/9041/UnitedHighSchool.png',
+          address:'1040 Wilsonburg Road, Clarksburg, WV 26301',
+          phoneOffice:'304-326-7560',
+          phoneFax:'304-624-3245',
+          web:'https://www.harcoboe.net/o/uhs/'
+        }
+      ];
+
+      const STORAGE_KEY = 'hcsSignatureGeneratorState_Final';
+
+      const el = {
+        name: root.querySelector('#name'),
+        title: root.querySelector('#title'),
+        dept: root.querySelector('#dept'),
+        email: root.querySelector('#email'),
+        phoneOffice: root.querySelector('#phoneOffice'),
+        phoneCell: root.querySelector('#phoneCell'),
+        phoneFax: root.querySelector('#phoneFax'),
+        web: root.querySelector('#web'),
+        address: root.querySelector('#address'),
+        room: root.querySelector('#room'),
+        socialX: root.querySelector('#socialX'),
+        socialFB: root.querySelector('#socialFB'),
+        socialIG: root.querySelector('#socialIG'),
+        socialYT: root.querySelector('#socialYT'),
+        disclaimer: root.querySelector('#disclaimer'),
+        logoSelect: root.querySelector('#logoSelect'),
+        logoWidth: root.querySelector('#logoWidth'),
+        templateSelect: root.querySelector('#templateSelect'),
+        preview: root.querySelector('#preview'),
+        copyOutlookBtn: root.querySelector('#copyOutlookBtn'),
+        downloadBtn: root.querySelector('#downloadHtmlBtn'),
+        resetSchoolBtn: root.querySelector('#resetSchoolBtn'),
+        clearBtn: root.querySelector('#clearBtn')
+      };
+
+      function escapeHTML(str){
+        return String(str || '').replace(/[&<>"']/g, function(m){
+          return {
+            '&':'&amp;',
+            '<':'&lt;',
+            '>':'&gt;',
+            '"':'&quot;',
+            "'":'&#39;'
+          }[m];
+        });
+      }
+
+      function sanitizeUrl(u){
+        if(!u) return '';
+        let v = String(u).trim();
+        if(!/^https?:\/\//i.test(v)) v = 'https://' + v;
+        try {
+          const parsed = new URL(v);
+          if (!['http:', 'https:'].includes(parsed.protocol)) return '';
+          if (!parsed.hostname || parsed.username || parsed.password) return '';
+          return parsed.href;
+        } catch {
+          return '';
+        }
+      }
+
+      function normalizeEmail(value){
+        const email = String(value || '').trim();
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : '';
+      }
+
+      function showToast(msg){
+        const toast = root.querySelector('#toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      }
+
+      function buildLogoDropdown(){
+        el.logoSelect.replaceChildren();
+        SCHOOLS.forEach(function(o){
+          const option = document.createElement('option');
+          option.value = o.key;
+          option.textContent = o.label;
+          el.logoSelect.appendChild(option);
+        });
+        if (!el.logoSelect.value) el.logoSelect.value = 'district';
+      }
+
+      function currentSchool(){
+        return SCHOOLS.find(function(o){ return o.key === el.logoSelect.value; }) || SCHOOLS[0];
+      }
+
+      function maybeSet(field, value, force){
+        if (force || !(field.value || '').trim()) field.value = value || '';
+      }
+
+      function applySchoolDefaults(force){
+        const school = currentSchool();
+        maybeSet(el.dept, school.label, force);
+        maybeSet(el.address, school.address, force);
+        maybeSet(el.phoneOffice, school.phoneOffice, force);
+        maybeSet(el.phoneFax, school.phoneFax, force);
+        maybeSet(el.web, school.web, force);
+        render();
+        saveState();
+      }
+
+      function buildSocials(){
+        const parts = [];
+        const map = [
+          ['X', el.socialX.value],
+          ['Facebook', el.socialFB.value],
+          ['Instagram', el.socialIG.value],
+          ['YouTube', el.socialYT.value]
+        ];
+
+        for (let i = 0; i < map.length; i++){
+          const label = map[i][0];
+          const raw = map[i][1];
+          const url = sanitizeUrl(raw);
+          if (!url) continue;
+          parts.push('<a href="' + escapeHTML(url) + '" style="color:#003366;text-decoration:none">' + label + '</a>');
+        }
+
+        return parts.join(' · ');
+      }
+
+      function buildStandardSignature(data){
+        const divider = '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse">' +
+          '<tr><td style="padding:10px 0">' +
+            '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse">' +
+              '<tr><td height="1" style="height:1px;border-top:1px solid #C9C9C9;font-size:0;line-height:0;mso-line-height-rule:exactly">&nbsp;</td></tr>' +
+            '</table>' +
+          '</td></tr>' +
+        '</table>';
+
+        const phoneLines = [
+          data.phoneOffice ? '<span><strong>Office:</strong> ' + data.phoneOffice + '</span><br>' : '',
+          data.phoneCell ? '<span><strong>Cell:</strong> ' + data.phoneCell + '</span><br>' : '',
+          data.phoneFax ? '<span><strong>Fax:</strong> ' + data.phoneFax + '</span><br>' : ''
+        ].join('');
+
+        return '' +
+          '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="max-width:520px;width:100%;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#111111;font-size:14px;line-height:1.3">' +
+            '<tr>' +
+              '<td width="' + (data.logoWidth + 13) + '" style="width:' + (data.logoWidth + 13) + 'px;vertical-align:top;padding:0 12px 0 0;border-right:1px solid #C9C9C9">' +
+                '<img src="' + escapeHTML(data.logoUrl) + '" alt="' + data.logoAlt + '" width="' + data.logoWidth + '" style="width:' + data.logoWidth + 'px;max-width:' + data.logoWidth + 'px;height:auto;border:0;display:block">' +
+              '</td>' +
+              '<td style="vertical-align:top;padding:0 0 0 12px;font-family:Arial,Helvetica,sans-serif;color:#111111;font-size:14px;line-height:1.3">' +
+                '<div style="font-weight:bold;font-size:16px;color:#111111">' + data.name + '</div>' +
+                '<div style="font-size:14px;color:#222222">' + data.title + '</div>' +
+                '<div style="font-size:14px;color:#222222">' + data.dept + '</div>' +
+                divider +
+                '<div style="font-size:14px;color:#1A1A1A">' +
+                  phoneLines +
+                  '<span><strong>Email:</strong> <a href="' + data.emailHref + '" style="color:#003366;text-decoration:none">' + data.email + '</a></span><br>' +
+                  (data.webRaw ? '<span><strong>Web:</strong> <a href="' + escapeHTML(data.webRaw) + '" style="color:#003366;text-decoration:none">' + data.displayWeb + '</a></span><br>' : '') +
+                  '<span><strong>Address:</strong> ' + data.address + (data.room ? ', ' + data.room : '') + '</span>' +
+                '</div>' +
+                (data.socials ? divider + '<div style="font-size:14px;color:#1A1A1A">' + data.socials + '</div>' : '') +
+                (data.disclaimer ? '<div style="margin-top:10px;font-size:12px;color:#1a1a1a">' + data.disclaimer + '</div>' : '') +
+              '</td>' +
+            '</tr>' +
+          '</table>';
+      }
+
+      function buildCompactSignature(data){
+        const compactContacts = [
+          data.phoneOffice ? '<span><strong>Office:</strong> ' + data.phoneOffice + '</span>' : '',
+          data.phoneCell ? '<span><strong>Cell:</strong> ' + data.phoneCell + '</span>' : '',
+          data.phoneFax ? '<span><strong>Fax:</strong> ' + data.phoneFax + '</span>' : ''
+        ].filter(Boolean).join(' &nbsp;|&nbsp; ');
+
+        return '' +
+          '<div style="max-width:560px;width:100%;font-family:Arial,Helvetica,sans-serif;color:#111111;font-size:14px;line-height:1.3">' +
+            '<div style="font-weight:bold;font-size:16px;color:#111111">' + data.name + '</div>' +
+            '<div style="font-size:14px;color:#222222">' + data.title + (data.title && data.dept ? ' | ' : '') + data.dept + '</div>' +
+            '<div style="margin-top:4px;font-size:14px;color:#1A1A1A">' +
+              (compactContacts ? compactContacts + '<br>' : '') +
+              '<strong>Email:</strong> <a href="' + data.emailHref + '" style="color:#003366;text-decoration:none">' + data.email + '</a>' +
+              (data.webRaw ? ' &nbsp;|&nbsp; <strong>Web:</strong> <a href="' + escapeHTML(data.webRaw) + '" style="color:#003366;text-decoration:none">' + data.displayWeb + '</a>' : '') +
+              '<br><strong>Address:</strong> ' + data.address + (data.room ? ', ' + data.room : '') +
+            '</div>' +
+            (data.socials ? '<div style="margin-top:6px;font-size:14px;color:#1A1A1A">' + data.socials + '</div>' : '') +
+            (data.disclaimer ? '<div style="margin-top:8px;font-size:11px;color:#1a1a1a">' + data.disclaimer + '</div>' : '') +
+          '</div>';
+      }
+
+      function render(){
+        const school = currentSchool();
+
+        const name = escapeHTML((el.name.value || '').trim()) || 'Your Name';
+        const title = escapeHTML((el.title.value || '').trim()) || 'Your Title';
+        const dept = escapeHTML((el.dept.value || '').trim()) || escapeHTML(school.label);
+        const emailRaw = normalizeEmail(el.email.value) || 'you@k12.wv.us';
+        const email = escapeHTML(emailRaw);
+        const emailHref = escapeHTML('mailto:' + encodeURIComponent(emailRaw));
+        const phoneOffice = escapeHTML((el.phoneOffice.value || '').trim());
+        const phoneCell = escapeHTML((el.phoneCell.value || '').trim());
+        const phoneFax = escapeHTML((el.phoneFax.value || '').trim());
+        const webRaw = sanitizeUrl(el.web.value || '');
+        const displayWeb = webRaw ? webRaw.replace(/^https?:\/\//i,'') : '';
+        const address = escapeHTML((el.address.value || '').trim()) || escapeHTML(school.address);
+        const room = escapeHTML((el.room.value || '').trim());
+        const disclaimer = escapeHTML((el.disclaimer.value || '').trim());
+        const logoWidth = Math.min(Math.max(parseInt(el.logoWidth.value || '120', 10) || 120, 60), 220);
+        const socials = buildSocials();
+
+        const data = {
+          name: name,
+          title: title,
+          dept: dept,
+          email: email,
+          emailHref: emailHref,
+          phoneOffice: phoneOffice,
+          phoneCell: phoneCell,
+          phoneFax: phoneFax,
+          webRaw: webRaw,
+          displayWeb: escapeHTML(displayWeb),
+          address: address,
+          room: room,
+          disclaimer: disclaimer,
+          socials: socials,
+          logoWidth: logoWidth,
+          logoUrl: school.url,
+          logoAlt: escapeHTML(school.label) + ' logo'
+        };
+
+        const html = el.templateSelect.value === 'compact'
+          ? buildCompactSignature(data)
+          : buildStandardSignature(data);
+
+        el.preview.innerHTML = html;
+      }
+
+      function saveState(){
+        const state = {};
+        Object.keys(el).forEach(function(key){
+          if (el[key] && typeof el[key].value !== 'undefined') {
+            state[key] = el[key].value;
+          }
+        });
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch(e) {
+          /* Storage may be unavailable in private or restricted browsing. */
+        }
+      }
+
+      function loadState(){
+        try {
+          const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+          Object.keys(state).forEach(function(key){
+            if (el[key] && typeof el[key].value !== 'undefined') {
+              el[key].value = state[key];
+            }
+          });
+        } catch(e) {
+          /* ignore */
+        }
+      }
+
+      function copyForOutlook(){
+        const html = el.preview.innerHTML;
+        const plain = el.preview.textContent || '';
+
+        if (navigator.clipboard && window.ClipboardItem) {
+          const item = new ClipboardItem({
+            'text/html': new Blob([html], {type: 'text/html'}),
+            'text/plain': new Blob([plain], {type: 'text/plain'})
+          });
+
+          navigator.clipboard.write([item])
+            .then(function(){ showToast('Copied for Outlook. Paste into Outlook > Signatures.'); })
+            .catch(function(){ fallbackCopy(); });
+        } else {
+          fallbackCopy();
+        }
+
+        function fallbackCopy(){
+          const range = document.createRange();
+          range.selectNodeContents(el.preview);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          const ok = document.execCommand && document.execCommand('copy');
+          sel.removeAllRanges();
+          if (ok) showToast('Copied! Paste into Outlook.');
+          else showToast('Copy failed. Select the preview and copy manually.');
+        }
+      }
+
+      function downloadHtml(){
+        const htmlDoc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Email Signature</title></head><body style="margin:16px">' + el.preview.innerHTML + '</body></html>';
+        const blob = new Blob([htmlDoc], {type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'email-signature.html';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+        showToast('HTML downloaded.');
+      }
+
+      function clearSavedInformation(){
+        root.querySelector('#sig-form').reset();
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch(e) {
+          /* Storage may be unavailable. */
+        }
+        el.logoSelect.value = 'district';
+        applySchoolDefaults(true);
+        showToast('Saved information cleared.');
+        el.name.focus();
+      }
+
+      buildLogoDropdown();
+      loadState();
+
+      if (![...el.logoSelect.options].some(function(opt){ return opt.value === el.logoSelect.value; })) {
+        el.logoSelect.value = 'district';
+      }
+
+      let lastSelectedSchool = el.logoSelect.value;
+
+      function handleSchoolSelection(){
+        if (el.logoSelect.value === lastSelectedSchool) return;
+        lastSelectedSchool = el.logoSelect.value;
+        applySchoolDefaults(true);
+        showToast('School information filled in.');
+      }
+
+      el.logoSelect.addEventListener('input', handleSchoolSelection);
+      el.logoSelect.addEventListener('change', handleSchoolSelection);
+
+      root.querySelectorAll('#sig-form input, #sig-form textarea, #sig-form select:not(#logoSelect)').forEach(function(node){
+        node.addEventListener('input', function(){
+          render();
+          saveState();
+        });
+        node.addEventListener('change', function(){
+          render();
+          saveState();
+        });
+      });
+
+      el.copyOutlookBtn.addEventListener('click', copyForOutlook);
+      el.downloadBtn.addEventListener('click', downloadHtml);
+      el.resetSchoolBtn.addEventListener('click', function(){
+        applySchoolDefaults(true);
+        showToast('School defaults reapplied.');
+      });
+      el.clearBtn.addEventListener('click', clearSavedInformation);
+
+      applySchoolDefaults(false);
+      render();
+      saveState();
+    })();
+  </script>
+</div>
