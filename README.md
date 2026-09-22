@@ -1,112 +1,157 @@
-[README.md](https://github.com/user-attachments/files/32539173/README.md)
-# HTML Email Signature Generator
+[README (1).md](https://github.com/user-attachments/files/32539364/README.1.md)
+# School Email Signature Generator
 
-A browser-based tool that helps employees create a consistent email signature for Outlook.
+This project gives school districts a simple email signature generator that can be added to a district website. Staff members can choose their school, enter their information, preview the signature, and copy it into Outlook.
 
-The generator is contained in one HTML file and does not need a server, database, build tool, or outside JavaScript library.
+## What It Does
 
-## Features
+- Offers Standard and Compact signature templates
+- Lets staff select their school or department
+- Fills in the school name, address, phone, fax, website, and logo
+- Shows a live preview
+- Copies a formatted signature for Outlook
+- Downloads the finished signature as an HTML file
+- Saves unfinished entries in the user's browser
+- Works on desktop and mobile screens
 
-- Standard signature with a school logo
-- Compact, text-only signature
-- School and department selector
-- Automatic school name, address, office phone, fax, website, and logo
-- Live signature preview
-- Adjustable logo size
-- Optional cell phone, room, social media links, and disclaimer
-- Outlook-friendly table layout and inline styles
-- Horizontal and vertical divider lines designed for Outlook
-- Copy formatted signature to the clipboard
-- Download the finished signature as an HTML file
-- Save form entries in the current browser
-- Clear saved information from the browser
-- Responsive layout for desktop and mobile screens
+## Add the Generator to Your Website
 
-## Project File
+Most school website providers offer a **Custom HTML**, **Embed Code**, or **Source Code** area.
 
-```text
-Harrison-County-Email-Signature-Generator.html
+1. Download `Harrison-County-Email-Signature-Generator.html`.
+2. Open the file in a plain-text or code editor.
+3. Copy the generator code.
+4. Sign in to your school website provider.
+5. Create or edit the page where the generator will appear.
+6. Add a Custom HTML, Embed Code, or Source Code block.
+7. Paste the generator code into that block.
+8. Save or publish the page.
+9. Test the school selector, live preview, copy button, and mobile layout.
+
+Your website provider must allow HTML, CSS, and JavaScript. If it removes `<script>` tags, the generator will not work. In that case, ask the website provider to host the file or allow JavaScript on the page.
+
+## Important: Keep the Code in a Container
+
+The generator should remain inside one main container. This helps keep its styles and controls from affecting the rest of the school website.
+
+```html
+<div id="hcs-email-generator-embed">
+  <!-- Keep all generator HTML, CSS, and JavaScript here. -->
+</div>
 ```
 
-The HTML file includes all page markup, styles, school data, and JavaScript.
+If you use AI to rewrite this code for your district, tell it:
 
-## Use the Generator
+> Keep the full email signature generator wrapped in one unique container. Scope all CSS and JavaScript to that container so the code does not change other parts of the website.
 
-1. Open `Harrison-County-Email-Signature-Generator.html` in a web browser.
-2. Choose the Standard or Compact template.
-3. Choose a school or department. Its saved contact information will fill automatically.
-4. Enter the employee's name, title, email, and any optional details.
-5. Review the live preview.
-6. Select **Copy for Outlook**.
-7. Open Outlook's signature settings and paste the signature.
+Use a unique container ID for your district. For example:
 
-The **Download .html** button can also save the finished signature as a separate HTML file.
+```html
+<div id="your-district-signature-generator">
+  <!-- Generator code -->
+</div>
+```
 
-## Add It to a Website
+CSS should start with that same ID:
 
-The file is built as a self-contained embed block. Copy its full contents into a custom HTML or embed block that allows HTML, CSS, and JavaScript.
+```css
+#your-district-signature-generator .card {
+  background: #ffffff;
+}
+```
 
-Some website editors remove `<script>` tags or other code for security. If that happens, host this file as its own web page and link to it instead of pasting it into the editor.
+JavaScript should also find the container first:
 
-## Publish with GitHub Pages
+```js
+const root = document.getElementById('your-district-signature-generator');
+```
 
-1. Add the HTML file and this `README.md` to a GitHub repository.
-2. Rename the HTML file to `index.html` if you want it to be the site's home page.
-3. In the repository, open **Settings > Pages**.
-4. Choose **Deploy from a branch**.
-5. Select the branch and root folder that contain `index.html`.
-6. Save the settings and open the web address GitHub provides.
+Do not remove the container unless you also update every related CSS selector and JavaScript reference.
 
-## Update School Information
+## Use It as a Separate Web Page
 
-School information is stored in the `SCHOOLS` array inside the HTML file. Each school uses this format:
+If your website provider does not allow JavaScript in page blocks, the generator can be hosted as its own page.
+
+1. Rename the HTML file to `index.html`.
+2. Upload it to a web server or GitHub Pages.
+3. Add a link to the generator from the district website.
+
+## Change It for Your District
+
+Before publishing, update:
+
+- District name and heading
+- Brand colors
+- School and department names
+- Addresses
+- Office and fax numbers
+- Website links
+- School logo links
+- Default email wording
+- Disclaimer text, if needed
+
+School information is stored in the `SCHOOLS` list inside the HTML file:
 
 ```js
 {
   key: 'school-key',
   label: 'School Name',
-  url: 'https://example.com/logo.png',
-  address: '123 Main Street, City, WV 26000',
+  url: 'https://example.org/school-logo.png',
+  address: '123 School Street, Your City, WV 26000',
   phoneOffice: '304-555-0100',
   phoneFax: '304-555-0101',
-  web: 'https://www.example.com/'
+  web: 'https://www.example.org/school'
 }
 ```
 
-Use a unique `key` for every school. Leave `phoneFax` empty when a school does not have a fax number.
+Each school must have a different `key`. If a school does not use fax, leave `phoneFax` empty:
 
-## Change the Look
-
-The main colors are CSS variables near the beginning of the file:
-
-```css
---brand: #003366;
---text: #0A0A0A;
---line: #C9D6E2;
---focus: #FF9900;
+```js
+phoneFax: ''
 ```
 
-The signature's Outlook-safe divider lines are set with inline border styles:
+## Logo Requirements
 
-```css
-border-right: 1px solid #C9C9C9;
-border-top: 1px solid #C9C9C9;
-```
+- Use an `https://` image link.
+- Use a clear PNG or JPG file.
+- Keep the logo available at the same web address.
+- Test the logo in Outlook Web and the Outlook desktop app.
+
+Some email programs block outside images until the person allows them. This is normal and does not always mean the generator is broken.
 
 ## Browser Storage and Privacy
 
-The generator saves entered information in the browser's `localStorage`. This makes it easier to return to unfinished work, but information may remain on a shared computer.
+The generator saves entered information in the browser. This helps staff return to unfinished work, but the information can remain on a shared computer.
 
-Use **Clear saved information** after using the generator on a shared device.
+Staff should select **Clear saved information** after using the generator on a shared device.
 
-## Outlook Notes
+## Testing Checklist
 
-- Outlook may block remote logo images until the recipient allows images.
-- Logos depend on their hosted image URLs. A changed or removed URL will break that logo.
-- Copy the signature from the generator again after changing its design or school data.
-- Outlook versions can render HTML differently. Test the signature in both Outlook Web and the desktop app after major changes.
+Before sharing the page with staff, check that:
+
+- Every school appears in the selector.
+- Each school fills in the correct information.
+- Each logo loads.
+- Both templates display correctly.
+- The live preview changes as information is entered.
+- The vertical and horizontal divider lines appear.
+- The Copy for Outlook button works.
+- The signature pastes correctly into Outlook Web.
+- The signature pastes correctly into the Outlook desktop app.
+- The page works on a phone.
+- The generator does not change other parts of the website.
 
 ## Maintenance
 
-Review school addresses, phone numbers, fax numbers, website links, and logo URLs on a regular schedule. Test the copy and paste process after every code update.
+Review school addresses, phone numbers, website links, and logo links at least once each school year. Test the generator again after your website provider makes a major platform update.
 
+## Files
+
+```text
+Harrison-County-Email-Signature-Generator.html
+README.md
+```
+
+## License
+
+No license is included. Add a license before allowing public reuse or distribution.
