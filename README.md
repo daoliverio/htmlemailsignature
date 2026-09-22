@@ -3,6 +3,10 @@
 
 This project gives school districts a simple email signature generator that can be added to a district website. Staff members can choose their school, enter their information, preview the signature, and copy it into Outlook.
 
+##See It In Action
+
+- https://www.harcoboe.net/page/email-signature-generator
+
 ## What It Does
 
 - Offers Standard and Compact signature templates
